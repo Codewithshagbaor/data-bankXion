@@ -150,6 +150,7 @@ const checkImageURL = (url: string): Promise<string> => {
             <Image
               src={`${fullscreenNftUrl}`}
               alt="Fullscreen NFT"
+              unoptimized={true}
               className="w-full h-auto object-contain max-h-[80vh]"
             />
             <button
