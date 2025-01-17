@@ -1,14 +1,15 @@
 import { Coins } from "lucide-react";
 import React, { useState, useRef } from "react";
 import { useWallet } from '@/utils/WalletContext';
+import Image from 'next/image';
+import type { JSX } from "react"
 
 export default function FileUpload(): JSX.Element {
   const [file, setFile] = useState<File | null>(null);
   const [fileName, setFileName] = useState<string>("");
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
-  const { bech32Address, isConnected, connectWallet, disconnectWallet } = useWallet();
-
+  const { bech32Address } = useWallet();
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const selectedFile = event.target.files?.[0];
@@ -107,7 +108,7 @@ export default function FileUpload(): JSX.Element {
             onDrop={handleDrop}
           >
             <div className="flex flex-col items-center text-center">
-              <img src="/img/upload2.png" alt="upload image" className="mb-4 w-16 h-16" />
+              <Image src="/img/upload2.png" alt="upload image" className="mb-4 w-16 h-16" />
               <p className="text-gray-300 mb-2">Select your file or drag and drop</p>
               <p className="text-gray-500 text-sm mb-4">PNG, PDF, JPG, DOCX accepted</p>
               <button

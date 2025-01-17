@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react"
 import DashboardNav from "@/components/DashboardNav"
 import Sidebar from "@/components/Sidebar"
 import { useWallet } from '@/utils/WalletContext';
+import Image from 'next/image';
 const DEFAULTIMG = "/img/file.png"
 
 export default function DashboardHome() {
@@ -21,17 +22,17 @@ export default function DashboardHome() {
   const [nfts, setNfts] = useState<Nft[]>([]);
   const [fullscreenNftUrl, setFullscreenNftUrl] = useState("");
   const [loading, setLoading] = useState(false);
-  const { bech32Address, isConnected, connectWallet, disconnectWallet } = useWallet();
+  const { bech32Address } = useWallet();
 
-  // Function to check if a URL is a valid image
-  const checkImageURL = (url: string): Promise<string> => {
-    return new Promise((resolve) => {
-      const img = new Image()
-      img.src = url
-      img.onload = () => resolve(url)
-      img.onerror = () => resolve(DEFAULTIMG)
-    })
-  }
+// Function to check if a URL is a valid image
+const checkImageURL = (url: string): Promise<string> => {
+  return new Promise((resolve) => {
+    const img = new window.Image();
+    img.src = url;
+    img.onload = () => resolve(url);
+    img.onerror = () => resolve(DEFAULTIMG);
+  });
+};
 
   useEffect(() => {
     if (!bech32Address) return
@@ -110,7 +111,7 @@ export default function DashboardHome() {
 
         {/* Display message if no NFTs found after loading */}
         {!loading && nfts.length === 0 && (
-          <div className="text-center text-xl text-white">You haven't minted an NFT yet.</div>
+          <div className="text-center text-xl text-white">You haven&apos;t minted an NFT yet.</div>
         )}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 md:gap-3 lg:gap-5 xl:gap-8 rounded-xl border sm:border-white md;border-none overflow-x-auto p-5">
           {nfts.map((nft, index) => (
@@ -119,7 +120,7 @@ export default function DashboardHome() {
               className="flex flex-col gap-1 p-3 bg-[#1E1E1E] rounded-md cursor-pointer border border-[#2B9DDA] hover:bg-[#3f3f3f] hover:border-gray-900 transition-colors h-11/12"
               onDoubleClick={() => handleNftDoubleClick(nft.params.url)}
             >
-              <img src={nft.imageUrl} alt={nft.params.name} className="rounded-lg object-contain h-20 md:h-40 w-full" />
+              <Image src={`${nft.imageUrl}`} alt={`${nft.params.name}`} className="rounded-lg object-contain h-20 md:h-40 w-full" />
               <div className="text-start mt-2 ml-2 mb-2 ">
                 <p className="md:text-xl md:mb-2">{nft.params.name}</p>
                 <p className="md:text-xs text-[#2B9DDA]">{nft.params["unit-name"]}</p>
@@ -145,17 +146,17 @@ export default function DashboardHome() {
             className="relative max-w-4xl w-full mx-4 bg-[#1E1E1E] rounded-lg overflow-hidden shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
-            <img
-              src={fullscreenNftUrl}
+            <Image
+              src={`${fullscreenNftUrl}`}
               alt="Fullscreen NFT"
               className="w-full h-auto object-contain max-h-[80vh]"
             />
             <button
               onClick={handleCloseFullscreen}
-              className="absolute top-4 right-4 text-white hover:text-gray-300 transition-colors duration-200 ease-in-out"
+              className="absolute top-4 right-4 bg-white hover:text-gray-300 transition-colors duration-200 ease-in-out"
               aria-label="Close fullscreen view"
             >
-              <X size={24} />
+            close
             </button>
           </div>
         </div>

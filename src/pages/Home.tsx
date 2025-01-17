@@ -1,7 +1,5 @@
 "use client"
-import React, { useState } from "react";
 import Navbar from "@/components/Navbar";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
 const Home: React.FC = () => {
 

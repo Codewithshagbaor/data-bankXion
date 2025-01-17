@@ -1,7 +1,5 @@
 "use client";
-import { Upload } from "lucide-react";
 import FileUpload from "@/components/FileUpload";
-import DocumentSelector from "@/components/DocumentSelector";
 import DashboardNav from "@/components/DashboardNav"
 import Sidebar from "@/components/Sidebar"
 

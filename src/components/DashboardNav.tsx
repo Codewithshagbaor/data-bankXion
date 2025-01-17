@@ -1,21 +1,16 @@
 "user client";
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
-import { User2, Hand } from 'lucide-react';
+import { User2 } from 'lucide-react';
 import { useWallet } from '@/utils/WalletContext';
-import { useRouter } from 'next/navigation';  // For App Router
 
 export default function DashboardNav() {
-    const { bech32Address, isConnected, connectWallet, disconnectWallet } = useWallet();
-    const router = useRouter();
+    const { bech32Address } = useWallet();
 
-  function handlDisconnect() {
-    disconnectWallet();
-    router.push('/');
-  }
 
-  function shortenAddress(address: string | any[]) {
-    return `${address.slice(0, 6)}...${address.slice(-4)}`;
+
+
+  function shortenAddress(bech32Address: string ) {
+    return `${bech32Address.slice(0, 6)}...${bech32Address.slice(-4)}`;
   }
 
 
@@ -25,7 +20,6 @@ export default function DashboardNav() {
         Welcome <span className="text-[#2B9DDA]">!!</span>
       </h1>
       <button
-        onClick={handlDisconnect}
         className="flex items-center justify-center gap-2 bg-white text-black p-2 md:px-4 md:py-2 rounded-lg text-sm font-mono"
         title='click me to logout'>
         <User2 size={16} />

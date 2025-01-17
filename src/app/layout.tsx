@@ -2,7 +2,7 @@
 import { Inter } from 'next/font/google'
 import './globals.css'
 import {AbstraxionProvider} from "@burnt-labs/abstraxion";
-import { WalletProvider, useWallet } from '@/utils/WalletContext';
+import { WalletProvider } from '@/utils/WalletContext';
 
 import "@burnt-labs/abstraxion/dist/index.css";
 import "@burnt-labs/ui/dist/index.css";

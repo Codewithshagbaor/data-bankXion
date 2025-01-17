@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-import { Home, Upload, Coins, LogOut } from "lucide-react";
+import { Home, Upload, LogOut } from "lucide-react";
 import { LucideIcon } from "lucide-react";
 import { XMarkIcon, Bars3Icon } from "@heroicons/react/24/outline";
-import { useNavigate } from "react-router-dom";
-import { useWallet } from '@/utils/WalletContext';
 import Link from 'next/link';
-
+import Image from 'next/image';
 interface MenuItemProps {
   icon: LucideIcon;
   text: string;
@@ -24,7 +22,6 @@ const MenuItem: React.FC<MenuItemProps> = ({ icon: Icon, text, to }) => {
 
 export default function Sidebar() {
   const [isOpen, setIsOpen] = useState(true);
-  const { bech32Address, isConnected, connectWallet, disconnectWallet } = useWallet();
 
   const toggleMobileMenu = () => {
     setIsOpen(!isOpen);
@@ -41,7 +38,7 @@ export default function Sidebar() {
           <XMarkIcon className="h-8 w-8 text-[#2B9DDA] ml-20" />
         ) : (
           <div className="flex justify-between items-center px-4">
-            <img src="/img/logo.png" alt="Logo" className="h-10" />
+            <Image src="/img/logo.png" alt="Logo" className="h-10" />
             <Bars3Icon className="h-8 w-8 text-[#2B9DDA]" />
           </div>
         )}
@@ -49,7 +46,7 @@ export default function Sidebar() {
       {isOpen && (
         <div className="flex flex-col  h-full">
           <div className="px-6 mb-6">
-            <img src="/img/logo.png" alt="Logo" className="h-10" />
+            <Image src="/img/logo.png" alt="Logo" className="h-10" />
           </div>
 
           <nav className="flex-1 mt-1">
@@ -59,7 +56,6 @@ export default function Sidebar() {
 
           <div className="pl-11">
             <button
-              onClick={disconnectWallet}
               className="flex items-center gap-3 py-2 text-gray-300 hover:bg-white/5 hover:text-white rounded-md transition-colors w-full"
             >
               <LogOut size={18} />
