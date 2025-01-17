@@ -120,7 +120,7 @@ const checkImageURL = (url: string): Promise<string> => {
               className="flex flex-col gap-1 p-3 bg-[#1E1E1E] rounded-md cursor-pointer border border-[#2B9DDA] hover:bg-[#3f3f3f] hover:border-gray-900 transition-colors h-11/12"
               onDoubleClick={() => handleNftDoubleClick(nft.params.url)}
             >
-              <Image src={`${nft.imageUrl}`} alt={`${nft.params.name}`} className="rounded-lg object-contain h-20 md:h-40 w-full" />
+              <Image src={`${nft.imageUrl}`} alt={`${nft.params.name}`} width={300} height={300} className="rounded-lg object-contain h-20 md:h-40 w-full" />
               <div className="text-start mt-2 ml-2 mb-2 ">
                 <p className="md:text-xl md:mb-2">{nft.params.name}</p>
                 <p className="md:text-xs text-[#2B9DDA]">{nft.params["unit-name"]}</p>
